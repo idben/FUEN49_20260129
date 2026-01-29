@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列的解構賦值</title>
+</head>
+
+<body>
+
+    <script>
+        // 陣列的解構賦值
+        const point1 = [100, 300];
+        const points = [[100, 300], [110, 310]];
+
+        // const x1 = points[0][0];
+        // const y1 = points[0][1];
+        // const x2 = points[1][0];
+        // const y2 = points[1][1];
+
+        const [[x1, y1], [x2, y2]] = points;
+
+        console.log(x1, y1, x2, y2);
+
+        // SELECT COUNT(*)
+        const rows = [
+            [42]
+        ]
+        // const counts = rows[0][0];
+        const [[counts]] = rows;
+        console.log(counts);
+
+        // SELECT id, name, email... WHERE id = 999
+        const row = [999, "Ben", "ben@ben.com"];
+        const [id, name, email] = row;
+        console.log(id, name, email);
+
+        // SELECT * 
+        const rows2 = [[1, "Ken", "ken@ken.com"], [2, "Ben", "ben@ben.com"]];
+        const [[id1, , email1], [id2, , email2]] = rows2;
+        console.log(id1, email1, id2, email2);
+
+        const [[aa1, ...data1], [aaa2, ...data2]] = rows2;
+        console.log(data1, data2);
+
+
+
+
+    </script>
+</body>
+
+</html>
