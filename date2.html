@@ -63,19 +63,15 @@
 
     <script src="https://sagedaben.com/iSpan/bookJSON.js"></script>
     <script>
-        // JSON
+        let asc = true;
         const data = JSON.parse(bookData_str);
+        data.sort(function (a, b) {
+            return new Date(a.date) - new Date(b.date);
+        });
 
         const books = document.querySelector(".books");
-        // 只有 for() 迴圈, 支援中止與跳過 (等待)
-        for (let i = 0; i < data.length; i++) {
-            // if (i >= 5) {
-            //     break;
-            // }
 
-            if (new Date(data[i].date) < new Date("2015-12-31")) {
-                continue;
-            }
+        for (let i = 0; i < data.length; i++) {
 
             const template = `<div class="book">
                                 <div class="col col1">${i + 1}</div>
