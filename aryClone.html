@@ -14,8 +14,15 @@
         const ary1 = [1, 2, [3, 4, 5]];
         // 淺(層)拷貝
         // const ary2 = ary1.slice();
-        const ary2 = ary1.concat([]);
-        ary2[2][2] = 100;
+        // const ary2 = ary1.concat([]);
+
+        // 深拷貝
+        // 官方方法
+        // const ary2 = structuredClone(ary1);
+        // 官方方法出來前的方法 JSON 轉字串再轉回去
+        const ary2 = JSON.parse(JSON.stringify(ary1))
+
+        ary2[2][2] = 100; // 改變內容
         console.log(ary1);
         console.log(ary2);
     </script>

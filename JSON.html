@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+
+<body>
+
+    <script>
+        const obj1 = {
+            sn: 26,
+            name: "皮卡丘"
+        };
+        console.log(obj1.sn);
+        console.log(obj1.name);
+
+        const obj1Str = JSON.stringify(obj1);
+        console.log(obj1);
+        console.log(obj1Str);
+
+        const str1 = '{"sn":26,"name":"皮卡丘"}';
+        const str1Obj = JSON.parse(str1);
+
+        str1Obj.sn = 16;
+
+        console.log(str1Obj);
+
+
+
+    </script>
+</body>
+
+</html>

@@ -98,7 +98,7 @@
 
 
         function init(searchValue = "") {
-            list.innerHTML = "";
+            list.innerHTML = ""; // 清空
 
             data.filter(function (d) {
                 return d.title.includes(searchValue)
