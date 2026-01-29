@@ -81,7 +81,7 @@
         const col4 = document.querySelector(".col4");
         const input = document.querySelector("input");
         const btnSearch = document.querySelector("button");
-        let data = JSON.parse(bookData_str);
+        const data = JSON.parse(bookData_str);
 
         btnSearch.onclick = () => {
             const text = input.value;
@@ -100,23 +100,26 @@
         function init(searchValue = "") {
             list.innerHTML = ""; // 清空
 
-            data.filter(function (d) {
+            let clonedData = structuredClone(data); // 複製原始資料
+
+
+            clonedData = clonedData.filter(function (d) {
                 return d.title.includes(searchValue)
             });
 
-            data.sort(function (a, b) {
+            clonedData.sort(function (a, b) {
                 if (!asc) {
                     return new Date(b.date) - new Date(a.date);
                 }
                 return new Date(a.date) - new Date(b.date);
             });
 
-            for (let i = 0; i < data.length; i++) {
+            for (let i = 0; i < clonedData.length; i++) {
                 const template = `<div class="book">
                                 <div class="col col1">${i + 1}</div>
-                                <div class="col col2">${data[i].author}</div>
-                                <div class="col col3">${data[i].title}</div>
-                                <div class="col col4">${data[i].date}</div>
+                                <div class="col col2">${clonedData[i].author}</div>
+                                <div class="col col3">${clonedData[i].title}</div>
+                                <div class="col col4">${clonedData[i].date}</div>
                             </div>`;
                 const node = document.createElement("div");
                 node.innerHTML = template;
