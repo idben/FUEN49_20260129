@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物件的進階使用</title>
+</head>
+
+<body>
+
+    <script>
+        // 推推 {}
+        const obj1 = {
+            id: 26,
+            name: "皮卡丘",
+            "33": 123,
+            money: [1, 2, 3],
+            yelp: function () {
+                return this.sound;
+            }
+        };
+        obj1.type = "電氣類";
+        obj1.sound = "皮卡皮卡";
+
+        // 物件的解構賦值
+        let { type, name } = obj1;
+        name = "123";
+        console.log(type);
+        console.log(name);
+
+        const { id, ...data } = obj1;
+        console.log(data);
+
+        // const obj2 = obj1; // 指向記憶體中的同一位置, 不是複製
+        // 淺
+        // const obj2 = { ...obj1 }; // 推推推
+        // const obj2 = Object.assign({}, obj1);
+        // 深
+        // const obj2 = structuredClone(obj1);
+        const obj2 = JSON.parse(JSON.stringify(obj1));
+        // 物件有 function 會沒辦法複製
+        obj2.money[0] = 5566;
+        console.log(obj2);
+        console.log(obj1);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
