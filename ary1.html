@@ -64,6 +64,20 @@
         const result10 = numbers.includes(19);
         console.log(result10);
 
+        // 排序(比大小)
+        // 升冪: return a - b
+        // 降冪: return b - a
+        const ary = ["王", "一", "陳我", "二森"];
+        const ary2 = [1, 55, 38, 1034, 2, 0, 42, 99, 386];
+        console.log(ary.sort()); // 字典排序法 自然排序法
+        console.log(ary2.sort(function (a, b) {
+            return a - b;
+        }));
+        console.log(ary2.sort(function (a, b) {
+            return b - a;
+        }));
+
+
 
 
     </script>

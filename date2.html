@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .book {
+            display: flex;
+            font-size: 20px;
+            /* df jcc aic */
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .book:nth-child(1) {
+            background-color: #4b4545;
+            color: #fff;
+        }
+
+        .book:nth-child(odd):not(:first-child) {
+            background-color: #f4f3f3;
+        }
+
+        .book:hover:not(:first-child) {
+            background-color: #d4f0fb;
+        }
+
+        .col1 {
+            width: 20px;
+        }
+
+        .col2 {
+            width: 140px;
+        }
+
+        .col3 {
+            width: calc(100% - 20px - 140px - 140px);
+        }
+
+        .col4 {
+            width: 140px;
+        }
+    </style>
+    <title>抓取資料產生表格</title>
+</head>
+
+<body>
+    <div class="books">
+        <div class="book">
+            <div class="col col1">id</div>
+            <div class="col col2">作者</div>
+            <div class="col col3">書名</div>
+            <div class="col col4">日期</div>
+        </div>
+        <!-- <div class="book">
+            <div class="col col1">16</div>
+            <div class="col col2">フジカワユカ</div>
+            <div class="col col3">無職轉生~到了異世界就拿出真本事~ 2</div>
+            <div class="col col4">2017-05-05</div>
+        </div> -->
+    </div>
+
+    <script src="https://sagedaben.com/iSpan/bookJSON.js"></script>
+    <script>
+        // JSON
+        const data = JSON.parse(bookData_str);
+
+        const books = document.querySelector(".books");
+        // 只有 for() 迴圈, 支援中止與跳過 (等待)
+        for (let i = 0; i < data.length; i++) {
+            // if (i >= 5) {
+            //     break;
+            // }
+
+            if (new Date(data[i].date) < new Date("2015-12-31")) {
+                continue;
+            }
+
+            const template = `<div class="book">
+                                <div class="col col1">${i + 1}</div>
+                                <div class="col col2">${data[i].author}</div>
+                                <div class="col col3">${data[i].title}</div>
+                                <div class="col col4">${data[i].date}</div>
+                            </div>`;
+            const node = document.createElement("div");
+            node.innerHTML = template;
+            books.append(node.childNodes[0]);
+        }
+    </script>
+</body>
+
+</html>
