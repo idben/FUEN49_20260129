@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .boxes {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f23939;
+            padding: 10px;
+
+            .box {
+                width: 50px;
+                height: 50px;
+                background-color: #fbc2c2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
+    <title>事件相關</title>
+</head>
+
+<body>
+    <div class="boxes">
+        <!-- .box*6>{$} -->
+        <div class="box add">1</div>
+        <div class="box update">2</div>
+        <div class="box del">3</div>
+        <div class="box search">4</div>
+        <div class="box copy">5</div>
+        <div class="box rename">6</div>
+    </div>
+
+    <script>
+        const boxes = document.querySelector(".boxes");
+        // 事件泡泡: 事件會由最底層往上層傳遞
+        // 事件代理
+        boxes.onclick = function (event) {
+            // console.log(event.target); // 事件觸發的對象
+            // console.log(event.currentTarget); // 事件觸發的對象
+            // .classList.contains() 有沒有包含某個樣式
+            if (event.target.classList.contains("box")) {
+                console.log(event.target.innerHTML);
+            }
+            if (event.target.classList.contains("add")) {
+                add()
+            }
+            if (event.target.classList.contains("update")) {
+                // update 要做的事
+            }
+        }
+
+        function add() {
+            console.log("add 要做的事");
+
+        }
+    </script>
+</body>
+
+</html>
