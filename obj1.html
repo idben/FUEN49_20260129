@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物件的表現方法</title>
+</head>
+
+<body>
+
+    <script>
+        // 推推 {}
+        const obj1 = {
+            id: 26,
+            name: "皮卡丘",
+            "33": 123,
+            yelp: function () {
+                return this.sound;
+            }
+        };
+        obj1.type = "電氣類";
+        obj1.sound = "皮卡皮卡";
+
+        const obj2 = new Object();
+        obj2.id = 26;
+        obj2.name = "皮卡丘";
+        obj2["type"] = "電氣類";
+        obj2[33] = 123; // 即使是數字做為屬性, 會自動轉字串
+        obj2["sound"] = "皮卡皮卡";
+        // 物件的方法必定使用 f 開頭的函數, 因為有 this 
+        obj2.yelp = function () {
+            return this.sound;
+        }
+
+
+        console.log(obj1);
+        console.log(obj2);
+        console.log(obj1 == obj2); // 物件是記憶體中的片段
+        // 即使內容一樣, 放在判斷中比還是會不同
+
+        console.log(obj1.name);
+        console.log(obj2["33"]);
+
+        console.log(obj1.yelp());
+
+
+
+
+    </script>
+</body>
+
+</html>
