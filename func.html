@@ -10,6 +10,8 @@
 <body>
     <button>1</button>
     <button>2</button>
+    <button>3</button>
+    <button>4</button>
 
     <script>
         const btns = document.querySelectorAll("button");
@@ -24,7 +26,19 @@
         }
 
         // ondblclick 滑鼠點兩下
+        // 在記憶體當中劃分一個區域寫 function
         btns[1].ondblclick = function (event) {
+            console.log(this);
+            this.style.fontSize = "36px";
+        }
+
+        // 指向記憶體中同一個位置的 function
+        btns[2].ondblclick = dblClick;
+
+        btns[3].ondblclick = dblClick;
+
+
+        function dblClick(event) {
             console.log(this);
             this.style.fontSize = "36px";
         }
