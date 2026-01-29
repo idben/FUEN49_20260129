@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件相關</title>
+</head>
+
+<body>
+    <button id="a123">1</button>
+
+    <script>
+        // onclick 等號指向兩個事件, 後者會覆蓋前者
+        const a123 = document.querySelector("#a123");
+
+        // a123.onclick = () => {
+        //     alert("QQ")
+        // }
+        // a123.onclick = () => {
+        //     console.log("TT");
+        // }
+
+        // 盡量用 addEventListener
+        a123.addEventListener("click", function () {
+            alert("QQ");
+        });
+        a123.addEventListener("click", function () {
+            console.log("TT");
+        });
+    </script>
+</body>
+
+</html>
