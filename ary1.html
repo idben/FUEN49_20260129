@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列的操作</title>
+</head>
+
+<body>
+
+    <script>
+        // filter
+        // 找多個, 回傳所有條件符合的元素
+        const numbers = [33, 44, 9, 6, 15, 19, 27, 55];
+        const result = numbers.filter(function (age) {
+            return age >= 18;
+        });
+        console.log(result);
+
+        // find / findIndex
+        // 找一個, 找到條件符合的第一個
+        const result2 = numbers.find(function (age) {
+            return age >= 18;
+        });
+        console.log(result2);
+
+        // 找不到回傳 undefined
+        const result3 = numbers.find(function (age) {
+            return age == 151;
+        });
+        console.log(result3);
+        const index3 = numbers.findIndex(function (age) {
+            return age == 15;
+        });
+        console.log(index3);
+
+        // every / some
+        // every 通通都符合才 true
+        // some 有一個符合就 true
+        const result4 = numbers.every(function (age) {
+            return age >= 18;
+        });
+        console.log(result4);
+        const result5 = numbers.every(function (age) {
+            return age < 70;
+        });
+        console.log(result5);
+        const result6 = numbers.some(function (age) {
+            return age >= 18;
+        });
+        console.log(result6);
+
+        // indexOf
+        // 找不到回傳 -1, 找到回傳索引值
+        const index7 = numbers.indexOf(18)
+        console.log(index7);
+        const index8 = numbers.indexOf(19)
+        console.log(index8);
+
+        // includes
+        const result9 = numbers.includes(18);
+        console.log(result9);
+        const result10 = numbers.includes(19);
+        console.log(result10);
+
+
+
+    </script>
+</body>
+
+</html>
