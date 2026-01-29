@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函數</title>
+</head>
+
+<body>
+    <button>1</button>
+    <button>2</button>
+
+    <script>
+        const btns = document.querySelectorAll("button");
+
+        // 事件的註冊指向的函數, 都一定會自動帶參數進去, 有用到再寫來接
+        btns[0].ondblclick = (event) => {
+            console.log(this);
+            console.log(event.target); // 事件觸發的對象
+            console.log(event.currentTarget); // 事件註冊的對象
+            // 箭頭函數中，會用事件參數回推代替 this
+            event.target.style.fontSize = "36px";
+        }
+
+        // ondblclick 滑鼠點兩下
+        btns[1].ondblclick = function (event) {
+            console.log(this);
+            this.style.fontSize = "36px";
+        }
+
+
+        // 最原始的箭頭函數
+        const get2 = (arg1) => {
+            console.log(this);
+            return `${arg1} get2`;
+        }
+
+        // 省略1: 只有傳入一個參數, 可省略小括號
+        // const get2 = arg1 => {
+        //     return `${arg1} get2`;
+        // }
+
+        // 省略2: 當函數內容只有一句 return，可以省略 return 和大括號
+        // 而且一定要放在同一行
+        // const get2 = arg1 => `${arg1} get2`;
+
+        console.log(get2("小明"));
+
+        console.log(get1("小明"));
+
+
+        function get1(arg1) {
+            console.log(this);
+            return `${arg1} get1`;
+        }
+    </script>
+</body>
+
+</html>
