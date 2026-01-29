@@ -13,16 +13,16 @@
             align-items: center;
         }
 
-        .book:nth-child(1) {
+        .book.title {
             background-color: #4b4545;
             color: #fff;
         }
 
-        .book:nth-child(odd):not(:first-child) {
+        .list .book:nth-child(odd) {
             background-color: #f4f3f3;
         }
 
-        .book:hover:not(:first-child) {
+        .list .book:hover {
             background-color: #d4f0fb;
         }
 
@@ -47,12 +47,13 @@
 
 <body>
     <div class="books">
-        <div class="book">
+        <div class="book title">
             <div class="col col1">id</div>
             <div class="col col2">作者</div>
             <div class="col col3">書名</div>
             <div class="col col4">日期</div>
         </div>
+        <div class="list"></div>
         <!-- <div class="book">
             <div class="col col1">16</div>
             <div class="col col2">フジカワユカ</div>
@@ -64,24 +65,40 @@
     <script src="https://sagedaben.com/iSpan/bookJSON.js"></script>
     <script>
         let asc = true;
-        const data = JSON.parse(bookData_str);
-        data.sort(function (a, b) {
-            return new Date(a.date) - new Date(b.date);
-        });
-
         const books = document.querySelector(".books");
+        const list = document.querySelector(".list");
+        const col4 = document.querySelector(".col4");
+        const data = JSON.parse(bookData_str);
 
-        for (let i = 0; i < data.length; i++) {
+        col4.onclick = function () {
+            // asc = !asc;
+            asc = (asc == true) ? false : true;
+            init();
+        }
 
-            const template = `<div class="book">
+        init();
+
+
+        function init() {
+            list.innerHTML = "";
+            data.sort(function (a, b) {
+                if (!asc) {
+                    return new Date(b.date) - new Date(a.date);
+                }
+                return new Date(a.date) - new Date(b.date);
+            });
+
+            for (let i = 0; i < data.length; i++) {
+                const template = `<div class="book">
                                 <div class="col col1">${i + 1}</div>
                                 <div class="col col2">${data[i].author}</div>
                                 <div class="col col3">${data[i].title}</div>
                                 <div class="col col4">${data[i].date}</div>
                             </div>`;
-            const node = document.createElement("div");
-            node.innerHTML = template;
-            books.append(node.childNodes[0]);
+                const node = document.createElement("div");
+                node.innerHTML = template;
+                list.append(node.childNodes[0]);
+            }
         }
     </script>
 </body>
