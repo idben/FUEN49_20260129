@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        .container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 4px;
+            gap: 2px;
+        }
+
         .book {
             display: flex;
             font-size: 20px;
@@ -46,6 +53,10 @@
 </head>
 
 <body>
+    <div class="container">
+        <input type="text" class="sort">
+        <button>搜尋</button>
+    </div>
     <div class="books">
         <div class="book title">
             <div class="col col1">id</div>
@@ -68,7 +79,14 @@
         const books = document.querySelector(".books");
         const list = document.querySelector(".list");
         const col4 = document.querySelector(".col4");
-        const data = JSON.parse(bookData_str);
+        const input = document.querySelector("input");
+        const btnSearch = document.querySelector("button");
+        let data = JSON.parse(bookData_str);
+
+        btnSearch.onclick = () => {
+            const text = input.value;
+            init(text);
+        }
 
         col4.onclick = function () {
             // asc = !asc;
@@ -79,8 +97,13 @@
         init();
 
 
-        function init() {
+        function init(searchValue = "") {
             list.innerHTML = "";
+
+            data.filter(function (d) {
+                return d.title.includes(searchValue)
+            });
+
             data.sort(function (a, b) {
                 if (!asc) {
                     return new Date(b.date) - new Date(a.date);
