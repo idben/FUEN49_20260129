@@ -4,15 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .boxes {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f23939;
+            padding: 10px;
+
+            .box {
+                width: 50px;
+                height: 50px;
+                background-color: #fbc2c2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
     <title>事件相關</title>
 </head>
 
 <body>
+    <div class="boxes">
+        <div class="box add">1</div>
+        <div class="box update">2</div>
+        <div class="box del">3</div>
+        <div class="box search">4</div>
+        <div class="box copy">5</div>
+        <div class="box rename">6</div>
+    </div>
+
     <button id="a123">1</button>
 
     <script>
         // onclick 等號指向兩個事件, 後者會覆蓋前者
         const a123 = document.querySelector("#a123");
+        const boxes = document.querySelector(".boxes");
+        const boxs = document.querySelectorAll(".box");
+
+        boxes.addEventListener("click", () => {
+            console.log("QQQ");
+        });
+
+        boxs.forEach((box) => {
+            box.addEventListener("click", click1);
+        });
+
+
+        function click1(evn) {
+            evn.stopPropagation(); // 阻止事件向上傳遞
+            console.log(evn.target.innerHTML);
+            // evn.target.removeEventListener("click", click1);
+        }
 
         // a123.onclick = () => {
         //     alert("QQ")
