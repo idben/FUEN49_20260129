@@ -63,10 +63,22 @@
 
         console.log(get1("小明"));
 
+        console.log(get3("小明", "小美"));
+        console.log(get3("小明", "小美", "小華"));
+        console.log(get3("小明", "小美", "小華", "大華", "華華"));
+
+
 
         function get1(arg1) {
             console.log(this);
             return `${arg1} get1`;
+        }
+
+        // 傳入參數不固定時的參數設計
+        // args 可以換成你喜歡的任何單字
+        // ...args 一定要放在最後一組
+        function get3(name1, ...args) {
+            return args.join(", ");
         }
     </script>
 </body>
